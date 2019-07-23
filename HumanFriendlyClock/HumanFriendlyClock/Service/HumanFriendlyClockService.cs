@@ -14,12 +14,13 @@ namespace HumanFriendlyClock.Service
             _timeParser = timeParser;
             _timeMapper = timeMapper;
         }
-        public string Translate(string message)
+        public string Translate(string time)
         {
-            var (hour, minute) = _timeParser.Parse(message);
+            var (hour, minute) = _timeParser.Parse(time);
             
             var translatedHour = _timeMapper.MapHour(hour);
             var translatedMinute = _timeMapper.MapMinute(minute);
+
             if (MinutesAreZero(minute))
             {
                 return Format($"{translatedHour} o'clock");

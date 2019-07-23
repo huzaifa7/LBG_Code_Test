@@ -2,6 +2,6 @@
 {
     public interface ITimeParser
     {
-        (int hour, int minute) Parse(string message);
+        (int hour, int minutes) Parse(string message);
     }
 }

@@ -3,6 +3,6 @@
     public interface ITimeMapper
     {
         string MapHour(int hour);
-        string MapMinute(int minute);
+        string MapMinute(int minutes);
     }
 }

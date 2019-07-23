@@ -2,6 +2,6 @@
 {
     public interface IHumanFriendlyClockService
     {
-        string Translate(string message);
+        string Translate(string time);
     }
 }

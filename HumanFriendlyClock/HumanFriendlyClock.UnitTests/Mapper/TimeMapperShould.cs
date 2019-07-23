@@ -1,4 +1,5 @@
-﻿using HumanFriendlyClock.Mapper;
+﻿using System;
+using HumanFriendlyClock.Mapper;
 using Xunit;
 
 namespace HumanFriendlyClock.UnitTests.Mapper
@@ -37,7 +38,7 @@ namespace HumanFriendlyClock.UnitTests.Mapper
         [InlineData(22, "ten")]
         [InlineData(23, "eleven")]
         [InlineData(24, "twelve")]
-        public void Return_Hour_In_Word_When_An_Hour_Value_Is_Passed(int hour, string expectedHourInWord)
+        public void Return_Hour_As_Word_When_An_Hour_Value_Is_Passed(int hour, string expectedHourInWord)
         {
             // Act
             var hourInWord = _timeMapper.MapHour(hour);
@@ -63,7 +64,7 @@ namespace HumanFriendlyClock.UnitTests.Mapper
         [InlineData(05, "five")]
         [InlineData(10, "ten")]
         [InlineData(15, "quarter")]
-        [InlineData(20, "twenty")]
+        [InlineData(22, "twenty two")]
         [InlineData(25, "twenty five")]
         [InlineData(30, "half")]
         [InlineData(35, "twenty five")]
@@ -71,13 +72,13 @@ namespace HumanFriendlyClock.UnitTests.Mapper
         [InlineData(45, "quarter")]
         [InlineData(50, "ten")]
         [InlineData(55, "five")]
-        public void Return_Minute_In_Word_When_A_Minute_Value_Is_Passed(int minute, string expectedMinuteInWord)
+        public void Return_Minute_As_Word_When_A_Minute_Value_Is_Passed(int minute, string expectedMinuteInWord)
         {
             // Act
-            var minuteInWord = _timeMapper.MapMinute(minute);
+            var minutesInWord = _timeMapper.MapMinute(minute);
 
             // Assert
-            Assert.Equal(expectedMinuteInWord, minuteInWord);
+            Assert.Equal(expectedMinuteInWord, minutesInWord);
         }
     }
 }

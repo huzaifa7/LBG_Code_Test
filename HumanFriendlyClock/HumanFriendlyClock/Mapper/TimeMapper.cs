@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HumanFriendlyClock.Mapper
 {
     public class TimeMapper : ITimeMapper
     {
         private readonly Dictionary<int, string> hourWordDictionary;
-        private readonly Dictionary<int, string> minuteWordDictionary;
+        private readonly Dictionary<string, string> singleDigitMinuteWordDictionary;
+        private Dictionary<string, string> doubleDigitMinuteWordDictionary;
 
         public TimeMapper()
         {
@@ -36,19 +38,33 @@ namespace HumanFriendlyClock.Mapper
                 {23, "eleven"},
                 {24, "twelve"}
             };
-            minuteWordDictionary = new Dictionary<int, string>()
+            singleDigitMinuteWordDictionary = new Dictionary<string, string>()
             {
-                {05, "five"},
-                {10, "ten"},
-                {15, "quarter"},
-                {20, "twenty"},
-                {25, "twenty five"},
-                {30, "half"},
-                {35, "twenty five"},
-                {40, "twenty"},
-                {45, "quarter"},
-                {50, "ten"},
-                {55, "five"}
+                {"1", "one"},
+                {"2", "two"},
+                {"3", "three"},
+                {"4", "four"},
+                {"5", "five"},
+                {"6", "six"},
+                {"7", "seven"},
+                {"8", "eight"},
+                {"9", "nine"},
+            };
+
+            doubleDigitMinuteWordDictionary = new Dictionary<string, string>()
+            {
+                {"10", "ten"},
+                {"11", "eleven"},
+                {"12", "twelve"},
+                {"13", "thirteen"},
+                {"14", "fourteen"},
+                {"15", "quarter"},
+                {"16", "sixteen"},
+                {"17", "seventeen"},
+                {"18", "eighteen"},
+                {"19", "nineteen"},
+                {"20", "twenty"},
+                {"30", "half"}
             };
         }
         public string MapHour(int hour)
@@ -58,15 +74,45 @@ namespace HumanFriendlyClock.Mapper
             return translatedHour;
         }
 
-        public string MapMinute(int minute)
+        public string MapMinute(int minutes)
         {
-            var translatedMinute = string.Empty;
-            if (minute != 00)
+            if (minutes == 00)
             {
-                translatedMinute = minuteWordDictionary[minute];
+                return string.Empty;
+            }
+            var inversedMinutes = InverseMinutes(minutes).ToString();
+
+            if (inversedMinutes.Length == 1)
+            {
+                return singleDigitMinuteWordDictionary[inversedMinutes];
+            }
+            
+            if (doubleDigitMinuteWordDictionary.TryGetValue(inversedMinutes, out string translatedMinute))
+            {
+                return translatedMinute;
             }
 
-            return translatedMinute;
+            var doubleDigitValue = RoundToTheLowestTenValue(inversedMinutes);
+            var singleDigitValue = inversedMinutes.Substring(1);
+            var firstWord = doubleDigitMinuteWordDictionary[doubleDigitValue];
+            var secondWord = singleDigitMinuteWordDictionary[singleDigitValue];
+
+            return $"{firstWord} {secondWord}";
+        }
+
+        private static string RoundToTheLowestTenValue(string inversedMinutes)
+        {
+            return inversedMinutes.Substring(0,1) + "0";
+        }
+
+        private int InverseMinutes(int minute)
+        {
+            if (minute > 30)
+            {
+                return 60 - minute;
+            }
+
+            return minute;
         }
     }
 }

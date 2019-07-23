@@ -7,7 +7,7 @@ namespace HumanFriendlyClock
 {
     class Program
     {
-        private static HumanFriendlyClockService _humansFriendlyClockService;
+        private static HumanFriendlyClockService _humanFriendlyClockService;
 
         static void Main(string[] args)
         {
@@ -15,10 +15,14 @@ namespace HumanFriendlyClock
             
             while (true)
             {
-                Console.WriteLine("Enter new time in following format {HH:mm}");
-                var inputMessage = Console.ReadLine();
-
-                var output = _humansFriendlyClockService.Translate(inputMessage);
+                Console.WriteLine("Enter new time in following format {HH:mm} or press 'Enter' for current time");
+                var input = Console.ReadLine();
+                var time = string.Empty;
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    time = DateTime.UtcNow.ToString("HH:mm");
+                }
+                var output = _humanFriendlyClockService.Translate(time);
                 Console.WriteLine(output);
             }
         }
@@ -27,7 +31,7 @@ namespace HumanFriendlyClock
         {
             var timeParser = new TimeParser();
             var timeMapper = new TimeMapper();
-            _humansFriendlyClockService = new HumanFriendlyClockService(timeParser, timeMapper);
+            _humanFriendlyClockService = new HumanFriendlyClockService(timeParser, timeMapper);
         }
     }
 }
