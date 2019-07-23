@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HumanFriendlyClock.Mapper;
-using HumanFriendlyClock.Parser;
-using HumanFriendlyClock.Service;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using TalkingClock.Mapper;
+using TalkingClock.Parser;
+using TalkingClock.Service;
 
-namespace HumanFriendlyClockApi
+namespace TalkingClockApi
 {
     public class Startup
     {
@@ -31,7 +24,7 @@ namespace HumanFriendlyClockApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<ITimeParser, TimeParser>();
             services.AddSingleton<ITimeMapper, TimeMapper>();
-            services.AddSingleton<IHumanFriendlyClockService, HumanFriendlyClockService>();
+            services.AddSingleton<ITalkingClockService, TalkingClockService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

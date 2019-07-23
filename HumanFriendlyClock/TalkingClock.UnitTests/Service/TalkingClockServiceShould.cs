@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-using HumanFriendlyClock.Mapper;
-using HumanFriendlyClock.Parser;
-using HumanFriendlyClock.Service;
-using Moq;
+﻿using Moq;
+using TalkingClock.Mapper;
+using TalkingClock.Parser;
+using TalkingClock.Service;
 using Xunit;
 
-namespace HumanFriendlyClock.UnitTests.Service
+namespace TalkingClock.UnitTests.Service
 {
-    public class HumanFriendlyClockServiceShould
+    public class TalkingClockServiceShould
     {
         private readonly Mock<ITimeParser> _timeParserMock;
         private readonly Mock<ITimeMapper> _timeMapperMock;
         private readonly string _inputMessage;
+        private readonly ITalkingClockService _talkingClockService;
 
-        public HumanFriendlyClockServiceShould()
+        public TalkingClockServiceShould()
         {
             _inputMessage = "01:00";
             _timeParserMock = new Mock<ITimeParser>();
@@ -21,16 +21,14 @@ namespace HumanFriendlyClock.UnitTests.Service
             _timeMapperMock = new Mock<ITimeMapper>();
             _timeMapperMock.Setup(mapper => mapper.MapHour(01)).Returns("one");
             _timeMapperMock.Setup(mapper => mapper.MapMinute(00)).Returns(string.Empty);
+            _talkingClockService = new TalkingClockService(_timeParserMock.Object, _timeMapperMock.Object);
         }
 
         [Fact]
         public void Call_TimeParser_When_Translating_Message()
         {
-            // Arrange
-            var humanFriendlyClockService = new HumanFriendlyClockService(_timeParserMock.Object, _timeMapperMock.Object);
-
             // Act
-            humanFriendlyClockService.Translate(_inputMessage);
+            _talkingClockService.Translate(_inputMessage);
 
             // Assert
             _timeParserMock.Verify(parser => parser.Parse(_inputMessage), Times.Once);
@@ -39,11 +37,8 @@ namespace HumanFriendlyClock.UnitTests.Service
         [Fact]
         public void Call_TimeMapper_When_Translating_Message()
         {
-            // Arrange
-            var humanFriendlyClockService = new HumanFriendlyClockService(_timeParserMock.Object, _timeMapperMock.Object);
-
             // Act
-            humanFriendlyClockService.Translate(_inputMessage);
+            _talkingClockService.Translate(_inputMessage);
 
             // Assert
             _timeMapperMock.Verify(parser => parser.MapHour(01), Times.Once);
@@ -58,10 +53,8 @@ namespace HumanFriendlyClock.UnitTests.Service
             var timeAsString = "01:00";
             var expectedFriendlyMessage = "One o'clock";
 
-            var humanFriendlyClockService = new HumanFriendlyClockService(_timeParserMock.Object, _timeMapperMock.Object);
-
             // Act
-            var timeMessage = humanFriendlyClockService.Translate(timeAsString);
+            var timeMessage = _talkingClockService.Translate(timeAsString);
 
             // Assert
             Assert.Equal(expectedFriendlyMessage, timeMessage);
@@ -77,10 +70,8 @@ namespace HumanFriendlyClock.UnitTests.Service
             _timeMapperMock.Setup(mapper => mapper.MapHour(15)).Returns("three");
             _timeMapperMock.Setup(mapper => mapper.MapMinute(30)).Returns("half");
 
-            var humanFriendlyClockService = new HumanFriendlyClockService(_timeParserMock.Object, _timeMapperMock.Object);
-
             // Act
-            var timeMessage = humanFriendlyClockService.Translate(timeAsString);
+            var timeMessage = _talkingClockService.Translate(timeAsString);
 
             // Assert
             Assert.Equal(expectedFriendlyMessage, timeMessage);
@@ -97,10 +88,8 @@ namespace HumanFriendlyClock.UnitTests.Service
             _timeMapperMock.Setup(mapper => mapper.MapHour(17)).Returns("five");
             _timeMapperMock.Setup(mapper => mapper.MapMinute(55)).Returns("five");
 
-            var humanFriendlyClockService = new HumanFriendlyClockService(_timeParserMock.Object, _timeMapperMock.Object);
-
             // Act
-            var timeMessage = humanFriendlyClockService.Translate(timeAsString);
+            var timeMessage = _talkingClockService.Translate(timeAsString);
 
             // Assert
             Assert.Equal(expectedFriendlyMessage, timeMessage);

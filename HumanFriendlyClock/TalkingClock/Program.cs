@@ -1,13 +1,13 @@
 ﻿using System;
-using HumanFriendlyClock.Mapper;
-using HumanFriendlyClock.Parser;
-using HumanFriendlyClock.Service;
+using TalkingClock.Mapper;
+using TalkingClock.Parser;
+using TalkingClock.Service;
 
-namespace HumanFriendlyClock
+namespace TalkingClock
 {
     class Program
     {
-        private static HumanFriendlyClockService _humanFriendlyClockService;
+        private static TalkingClockService _talkingClockService;
 
         static void Main(string[] args)
         {
@@ -17,13 +17,14 @@ namespace HumanFriendlyClock
             {
                 Console.WriteLine("Enter new time in following format {HH:mm} or press 'Enter' for current time");
                 var input = Console.ReadLine();
-                var time = string.Empty;
-                if (string.IsNullOrWhiteSpace(input))
+                if (!string.IsNullOrWhiteSpace(input))
                 {
-                    time = DateTime.UtcNow.ToString("HH:mm");
+                    Console.WriteLine(_talkingClockService.Translate(input));
                 }
-                var output = _humanFriendlyClockService.Translate(time);
-                Console.WriteLine(output);
+                else
+                {
+                    Console.WriteLine(_talkingClockService.Translate(DateTime.UtcNow.ToString("HH:mm")));
+                }
             }
         }
 
@@ -31,7 +32,7 @@ namespace HumanFriendlyClock
         {
             var timeParser = new TimeParser();
             var timeMapper = new TimeMapper();
-            _humanFriendlyClockService = new HumanFriendlyClockService(timeParser, timeMapper);
+            _talkingClockService = new TalkingClockService(timeParser, timeMapper);
         }
     }
 }

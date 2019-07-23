@@ -15,18 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HumanFriendlyClockApi\HumanFriendlyClockApi.csproj" />
-    <ProjectReference Include="..\HumanFriendlyClock\HumanFriendlyClock.csproj" />
+    <ProjectReference Include="..\TalkingClockApi\TalkingClockApi.csproj" />
+    <ProjectReference Include="..\TalkingClock\TalkingClock.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
       <HintPath>..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

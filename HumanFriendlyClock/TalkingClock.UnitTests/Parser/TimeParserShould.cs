@@ -1,7 +1,7 @@
-﻿using HumanFriendlyClock.Parser;
+﻿using TalkingClock.Parser;
 using Xunit;
 
-namespace HumanFriendlyClock.UnitTests.Parser
+namespace TalkingClock.UnitTests.Parser
 {
     public class TimeParserShould
     {
@@ -26,13 +26,13 @@ namespace HumanFriendlyClock.UnitTests.Parser
         }
 
         [Fact]
-        public void Return_Hour_And_Minute_When_Time_Is_Passed_In_An_Arbitary_Text()
+        public void Return_Hour_And_Minute_When_Time_Is_Passed_In_An_Arbitrary_Text()
         {
             // Arrange
-            var timeInArbitaryText = "The time is 15:30";
+            var timeInArbitraryText = "The time is 15:30";
 
             // Act
-            var (hour, minute) = _timeParser.Parse(timeInArbitaryText);
+            var (hour, minute) = _timeParser.Parse(timeInArbitraryText);
 
             // Assert
             Assert.Equal(15, hour);

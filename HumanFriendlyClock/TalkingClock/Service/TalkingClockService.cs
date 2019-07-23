@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using HumanFriendlyClock.Mapper;
-using HumanFriendlyClock.Parser;
+using TalkingClock.Mapper;
+using TalkingClock.Parser;
 
-namespace HumanFriendlyClock.Service
+namespace TalkingClock.Service
 {
-    public class HumanFriendlyClockService : IHumanFriendlyClockService
+    public class TalkingClockService : ITalkingClockService
     {
         private readonly ITimeParser _timeParser;
         private readonly ITimeMapper _timeMapper;
 
-        public HumanFriendlyClockService(ITimeParser timeParser, ITimeMapper timeMapper)
+        public TalkingClockService(ITimeParser timeParser, ITimeMapper timeMapper)
         {
             _timeParser = timeParser;
             _timeMapper = timeMapper;

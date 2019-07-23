@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace HumanFriendlyClock.Parser
+namespace TalkingClock.Parser
 {
     public class TimeParser : ITimeParser
     {

@@ -1,4 +1,4 @@
-﻿namespace HumanFriendlyClock.Mapper
+﻿namespace TalkingClock.Mapper
 {
     public interface ITimeMapper
     {

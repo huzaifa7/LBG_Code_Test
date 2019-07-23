@@ -1,8 +1,7 @@
-﻿using System;
-using HumanFriendlyClock.Mapper;
+﻿using TalkingClock.Mapper;
 using Xunit;
 
-namespace HumanFriendlyClock.UnitTests.Mapper
+namespace TalkingClock.UnitTests.Mapper
 {
     public class TimeMapperShould
     {

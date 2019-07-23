@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HumanFriendlyClock\HumanFriendlyClock.csproj" />
+    <ProjectReference Include="..\TalkingClock\TalkingClock.csproj" />
   </ItemGroup>
 
 </Project>

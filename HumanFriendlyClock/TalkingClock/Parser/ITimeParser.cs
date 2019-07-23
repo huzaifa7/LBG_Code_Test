@@ -1,4 +1,4 @@
-﻿namespace HumanFriendlyClock.Parser
+﻿namespace TalkingClock.Parser
 {
     public interface ITimeParser
     {

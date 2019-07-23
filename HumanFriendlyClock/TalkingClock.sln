@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanFriendlyClock", "HumanFriendlyClock\HumanFriendlyClock.csproj", "{A3DD719A-21F2-4BB8-A356-DC15D4EBBD37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalkingClock", "TalkingClock\TalkingClock.csproj", "{A3DD719A-21F2-4BB8-A356-DC15D4EBBD37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanFriendlyClock.UnitTests", "HumanFriendlyClock.UnitTests\HumanFriendlyClock.UnitTests.csproj", "{9E2B7E25-6736-43AC-A9D3-8166B88344F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalkingClock.UnitTests", "TalkingClock.UnitTests\TalkingClock.UnitTests.csproj", "{9E2B7E25-6736-43AC-A9D3-8166B88344F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanFriendlyClockApi", "HumanFriendlyClockApi\HumanFriendlyClockApi.csproj", "{2D773FDC-B25F-4D35-A617-3B203AB8ACDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalkingClockApi", "TalkingClockApi\TalkingClockApi.csproj", "{2D773FDC-B25F-4D35-A617-3B203AB8ACDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanFriendlyClockApi.UnitTests", "HumanFriendlyClockApi.UnitTests\HumanFriendlyClockApi.UnitTests.csproj", "{271C5E2E-0F56-4972-AD44-CBEEA52A09AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalkingClockApi.UnitTests", "TalkingClockApi.UnitTests\TalkingClockApi.UnitTests.csproj", "{271C5E2E-0F56-4972-AD44-CBEEA52A09AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

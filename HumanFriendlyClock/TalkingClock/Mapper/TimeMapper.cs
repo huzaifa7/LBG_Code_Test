@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace HumanFriendlyClock.Mapper
+namespace TalkingClock.Mapper
 {
     public class TimeMapper : ITimeMapper
     {
